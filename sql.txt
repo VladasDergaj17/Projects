@@ -1,0 +1,97 @@
+-- All collums that will be needed for the project --
+/*SELECT
+iso_code as ISO,location as Country,date,new_cases,total_cases,new_deaths,Total_deaths,new_vaccinations,Total_vaccinations,population,
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+ORDER BY
+location desc, date desc*/
+
+-- Total Cases vs Population --
+/*SELECT
+date,iso_code as ISO,location as Country,total_cases, population,
+(total_cases/population)*100 as PercentagePopulationInfected
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+ORDER BY
+location desc, date desc*/
+
+-- Highest infection rate between Countries --
+/*SELECT
+location as Country,population,MAX(total_cases) as HighestInfectionCount,MAX(total_cases/population)*100 as PercentagePopulationInfected 
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+GROUP BY
+location,population
+ORDER BY
+PercentagePopulationInfected desc*/
+
+-- Death rate compared to total population --
+/*SELECT
+location as Country,population,Total_deaths,Max(Total_deaths/population)*100 as PercentagePopulationDeath
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+Group by
+location,population,total_deaths
+ORDER BY
+PercentagePopulationDeath desc*/
+
+-- Highest Death Count between Countries --
+/*SELECT
+location as Country,population,Max(Total_deaths)as Totaldeaths,Max(Total_deaths/population)*100 as PercentagePopulationDeath
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+Group by
+location,population
+ORDER BY
+PercentagePopulationDeath desc*/
+
+-- Total Vaccinations compared to population--
+/*SELECT
+location as Country,population,people_vaccinated,MAX(people_vaccinated/population)*100 as PercentagePopulationVacinated
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+Group by
+location,population,people_vaccinated
+ORDER BY
+PercentagePopulationVacinated desc*/
+
+-- Highest ammount of vaccinations between Countries --
+/*SELECT
+location as Country,population,Count(people_vaccinated) as Peoplevaccinated,MAX(people_vaccinated/population)*100 as PercentagePopulationVacinated
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+Group by
+location,population
+ORDER BY
+PercentagePopulationVacinated desc*/
+
+-- All Inform\tion --
+/*SELECT
+date,iso_code as Iso,location as Country,population,
+total_cases,total_deaths,people_vaccinated,
+Max(total_cases/population)*100 as PercentagePopulationInfected,
+MAX(Total_deaths/population)*100 as PercentagePopulationDeath,
+Max(people_vaccinated/population)*100 as PercentagePopulationVacinated
+FROM
+`possible-flag-238221.Covid.Covid_Case`
+WHERE
+Continent = 'Europe' and location in ('Lithuania','Latvia','Estonia')
+GROUP BY
+date,iso_code,Location,population,
+total_cases,total_deaths,people_vaccinated
+ORDER BY
+date desc*/
